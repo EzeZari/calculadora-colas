@@ -1,5 +1,5 @@
 export function calcularMG1() {
-    const lambda = parseFloat(document.getElementById('lambda').value);
+    const lambda = parseFloat(document.getElementById('lambda').value) / 60; // Convertir de clientes/hora a clientes/minuto
     const esperanzaServicio = parseFloat(document.getElementById('esperanzaServicio').value);
     const varianza = parseFloat(document.getElementById('varianza').value);
 

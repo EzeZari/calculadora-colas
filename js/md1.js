@@ -1,5 +1,5 @@
 export function calcularMD1() {
-    const lambda = parseFloat(document.getElementById('lambda').value);
+    const lambda = parseFloat(document.getElementById('lambda').value) / 60; // Convertir de clientes/hora a clientes/minuto
     const d = parseFloat(document.getElementById('d').value);
 
     if (isNaN(lambda) || isNaN(d)) {
