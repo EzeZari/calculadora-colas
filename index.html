@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Teoría de Colas</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Teoría de Colas</h1>
+      <p>Selecciona un modelo para comenzar</p>
+    </header>
+
+    <section class="modelos-section">
+      <div class="modelos-grid">
+        <div class="modelo-card" onclick="seleccionarModelo('mm1')" id="card-mm1">
+          <div class="modelo-title">M/M/1</div>
+          <div class="modelo-desc">Cola simple</div>
+        </div>
+
+        <div class="modelo-card" onclick="seleccionarModelo('mm1n')" id="card-mm1n">
+          <div class="modelo-title">M/M/1/N</div>
+          <div class="modelo-desc">Capacidad limitada</div>
+        </div>
+
+        <div class="modelo-card" onclick="seleccionarModelo('mm2')" id="card-mm2">
+          <div class="modelo-title">M/M/2</div>
+          <div class="modelo-desc">Dos servidores</div>
+        </div>
+
+        <div class="modelo-card" onclick="seleccionarModelo('mg1')" id="card-mg1">
+          <div class="modelo-title">M/G/1</div>
+          <div class="modelo-desc">Servicio general</div>
+        </div>
+
+        <div class="modelo-card" onclick="seleccionarModelo('md1')" id="card-md1">
+          <div class="modelo-title">M/D/1</div>
+          <div class="modelo-desc">Servicio determinístico</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="formulario-section" id="formularioSection">
+      <div class="form-container">
+        <div class="inputs-container" id="formularioInputs">
+          <!-- Inputs generados dinámicamente -->
+        </div>
+        <button class="btn-calcular" id="btnCalcular">Calcular</button>
+      </div>
+    </section>
+
+    <section class="resultados-section" id="resultadosSection">
+      <div class="resultados-container">
+        <div id="resultados"></div>
+      </div>
+    </section>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
