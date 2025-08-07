@@ -82,7 +82,7 @@ function mostrarCampos(modelo) {
   if (modelo === "md1") {
     contenedor.innerHTML += `
       <div class="input-group">
-        <label for="d">Tiempo fijo de servicio D (minutos):</label>
+        <label for="d">E(s)Tiempo de servicio por cliente:</label>
         <input type="number" id="d" step="any" placeholder="0.2" min="0">
       </div>
     `;
