@@ -90,13 +90,6 @@ function mostrarCampos(modelo) {
 
   if (modelo === "mm2") {
     contenedor.innerHTML += `
-      <div class="input-group">
-        <label for="configuracion">Configuración de servidores:</label>
-        <select id="configuracion">
-          <option value="iguales">Servidores idénticos (μ₁ = μ₂)</option>
-          <option value="sin_eleccion">Servidores distintos - Cola única</option>
-          <option value="con_eleccion">Servidores distintos - Con elección</option>
-        </select>
       </div>
       <div class="input-group">
         <label for="mu1">Tasa de servicio servidor 1 μ₁ (clientes/hora):</label>
@@ -106,6 +99,13 @@ function mostrarCampos(modelo) {
         <label for="mu2">Tasa de servicio servidor 2 μ₂ (clientes/hora):</label>
         <input type="number" id="mu2" placeholder="240" step="any" min="0">
       </div>
+      <div class="input-group">
+        <label for="configuracion">Configuración de servidores:</label>
+        <select id="configuracion">
+          <option value="iguales">Servidores idénticos (μ₁ = μ₂)</option>
+          <option value="sin_eleccion">Servidores distintos - Cola única</option>
+          <option value="con_eleccion">Servidores distintos - Con elección</option>
+        </select>
     `;
   }
 
@@ -113,7 +113,15 @@ function mostrarCampos(modelo) {
     contenedor.innerHTML += `
     <div class="input-group">
       <label for="nPn">Valor de n (opcional para calcular Pn):</label>
-      <input type="number" id="nPn" placeholder="Ej: 4">
+      <input type="number" id="nPn" placeholder="Ej: 4" min="0">
+    </div>
+    <div class="input-group">
+      <label for="tipoCalculo">Tipo de cálculo de probabilidad:</label>
+      <select id="tipoCalculo">
+        <option value="exactamente">P(X = n) - Exactamente n clientes</option>
+        <option value="al_menos">P(X ≥ n) - Al menos n clientes</option>
+        <option value="a_lo_sumo">P(X ≤ n) - A lo sumo n clientes</option>
+      </select>
     </div>
   `;
   }
@@ -203,6 +211,31 @@ function mostrarResultados(resultados) {
     if (key.startsWith('P') && key.match(/^P\d+$/)) {
       const n = key.substring(1);
       descripciones[key] = `Probabilidad de que haya exactamente ${n} clientes en el sistema.`;
+    }
+    // Nuevas descripciones para los diferentes tipos de cálculo
+    else if (key.startsWith('P(X = ')) {
+      const match = key.match(/P\(X = (\d+)\)/);
+      if (match) {
+        const n = match[1];
+        descripciones[key] = `Probabilidad de que haya exactamente ${n} clientes en el sistema.`;
+      }
+    }
+    else if (key.startsWith('P(X ≥ ')) {
+      const match = key.match(/P\(X ≥ (\d+)\)/);
+      if (match) {
+        const n = match[1];
+        descripciones[key] = `Probabilidad de que haya ${n} o más clientes en el sistema.`;
+      }
+    }
+    else if (key.startsWith('P(X ≤ ')) {
+      const match = key.match(/P\(X ≤ (\d+)\)/);
+      if (match) {
+        const n = match[1];
+        descripciones[key] = `Probabilidad de que haya como máximo ${n} clientes en el sistema.`;
+      }
+    }
+    else if (key === "Fórmula utilizada") {
+      descripciones[key] = "Fórmula matemática utilizada para el cálculo de probabilidad.";
     }
   }
 
